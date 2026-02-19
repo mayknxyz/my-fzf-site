@@ -1,0 +1,52 @@
+---
+title: my-fzf
+description: A standalone fzf navigation plugin — 334 commands for finding, navigating, grepping, and operating on files.
+template: splash
+head:
+  - tag: title
+    content: my-fzf
+hero:
+  tagline: A standalone fzf navigation plugin — 334 commands for finding, navigating, grepping, and operating on files.
+  image:
+    file: ../../assets/my-backpack-logo.png
+  actions:
+    - text: Getting Started
+      link: /getting-started/
+      variant: primary
+    - text: there's more in my-backpack >>>
+      link: https://mybackpack.mikenavales.xyz
+      variant: minimal
+      attrs:
+        target: _blank
+        rel: noopener
+        class: backpack-link
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<style is:global>{`
+  .backpack-link {
+    color: var(--sl-color-text-accent) !important;
+    border-color: var(--sl-color-text-accent) !important;
+    padding-inline: 1.5rem !important;
+  }
+`}</style>
+
+## What is my-fzf?
+
+my-fzf is a standalone, sourceable Bash plugin that generates 334 fzf commands for finding, navigating, grepping, and operating on files. It uses `fzf`, `fd`, `rg`, `bat`, and `zoxide`.
+
+<CardGrid stagger>
+  <Card title="334 Commands" icon="terminal">
+    Find, navigate, grep, preview, and operate on files — all from short, memorable command names generated automatically.
+  </Card>
+  <Card title="3 Scopes" icon="magnifier">
+    Search in the current directory, repository root, or your entire home directory. Same commands, different reach.
+  </Card>
+  <Card title="10 File Types" icon="document">
+    Extension-filtered variants for md, ts, js, json, sh, css, svelte, astro, html, and toml — find exactly what you need.
+  </Card>
+  <Card title="Composable Names" icon="puzzle">
+    Commands follow `f + scope + action + type` — learn the pattern once, use it everywhere. No memorization needed.
+  </Card>
+</CardGrid>

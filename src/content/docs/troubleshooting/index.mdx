@@ -1,0 +1,67 @@
+---
+title: Troubleshooting
+description: Common issues and solutions when using my-fzf.
+---
+
+## Common Issues
+
+### "required dependency 'X' not found — aborting"
+
+my-fzf requires fzf, fd, rg, bat, and zoxide. If any are missing, it aborts entirely.
+
+**Fix:** Install the missing dependency. See [Dependencies](/dependencies/) for install commands.
+
+### Commands not found after installation
+
+The most common cause is not reloading your shell.
+
+**Fix:** Run `source ~/.bashrc` or open a new terminal.
+
+### "optional dependency 'nvim' not found — related commands skipped"
+
+This is a warning, not an error. my-fzf loaded successfully but skipped `n` and `gn` commands.
+
+**Fix:** Install <a href="https://neovim.io/" target="_blank" rel="noopener noreferrer">Neovim</a> if you want editor integration, or ignore the warning.
+
+### `frf` searches from wrong directory
+
+The `r` (repo) scope uses `git rev-parse --show-toplevel` to find the repository root. If you're not inside a git repository, it falls back to the current directory.
+
+**Fix:** Make sure you're inside a git repository, or use `fc*` (cwd) or `fg*` (global) commands instead.
+
+### fzf opens but shows no results
+
+This usually means `fd` found no matching files in the search scope.
+
+**Fix:**
+- Check that files exist in the expected directory
+- Try a broader scope (e.g., `frf` instead of `fcf`)
+- Try a variant with hidden/ignored files (e.g., `fcf-h` or `fcf-hni`)
+
+### Extension command finds no files
+
+Extension-filtered commands only match specific file extensions. For example, `fcfts` only finds `.ts`, `.tsx`, `.mts`, and `.cts` files.
+
+**Fix:** Check that files with the expected extension exist in the search scope. Use `fcf` (unfiltered) to verify.
+
+### `zoxide` commands don't work
+
+zoxide needs to be initialized in your shell before my-fzf loads.
+
+**Fix:** Make sure `eval "$(zoxide init bash)"` appears in your `.bashrc` **before** the `source ~/my-fzf/my-fzf.sh` line.
+
+## Verifying Installation
+
+Run this command to check that my-fzf loaded correctly:
+
+```bash
+declare -F | grep "^declare -f f[crg]\|^declare -f f[hkb]" | wc -l
+```
+
+You should see a count around 330. The exact number depends on whether optional dependencies are installed.
+
+## Getting Help
+
+- Browse all commands: `fzf-help` or `f-help`
+- Check a specific command: `type fcf` (shows the function definition)
+- Report issues: <a href="https://github.com/mayknxyz/my-fzf/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>

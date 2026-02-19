@@ -1,0 +1,190 @@
+---
+title: Examples
+description: Practical examples of using my-fzf commands in daily workflows.
+---
+
+## Finding Files
+
+```bash
+# Find any file in current directory
+fcf
+
+# Find any file in repo root
+frf
+
+# Find any file from home directory
+fgf
+
+# Find TypeScript files in repo
+frfts
+
+# Find markdown files in cwd
+fcfmd
+
+# Find shell scripts globally
+fgfsh
+```
+
+## Navigating Directories
+
+```bash
+# Find and cd into a directory in cwd
+fcd
+
+# Find and cd into a directory in repo
+frd
+
+# Smart cd with zoxide in cwd
+fcz
+
+# Smart cd with zoxide from repo root
+frz
+```
+
+## Grepping Content
+
+```bash
+# Grep in current directory
+fcg
+
+# Grep in repo root
+frg
+
+# Grep globally from home
+fgg
+
+# Grep including hidden files
+fcg-h
+
+# Grep including ignored files
+frg-ni
+
+# Grep including hidden + ignored files
+fgg-hni
+```
+
+## Previewing Files
+
+```bash
+# Preview file with bat in cwd
+fcb
+
+# Preview file with bat in repo
+frb
+
+# Grep and preview with bat
+fcgb
+
+# Grep in repo and preview with bat
+frgb
+```
+
+## Opening in Nvim
+
+```bash
+# Find and open file in nvim from cwd
+fcn
+
+# Find and open file in nvim from repo
+frn
+
+# Grep and open match in nvim
+fcgn
+
+# Find TypeScript file and open in nvim
+frnts
+```
+
+## File Operations
+
+```bash
+# Remove a file in cwd
+fcrmf
+
+# Remove a directory in repo
+frrmd
+
+# Move a file in cwd
+fcmvf
+
+# Copy a file in repo
+frcpf
+
+# Rename a file in cwd
+fcrnf
+
+# Remove markdown files in cwd
+fcrmfmd
+
+# Copy JavaScript files in repo
+frcpfjs
+```
+
+## Hidden and Ignored Files
+
+```bash
+# Find hidden files in cwd
+fcf-h
+
+# Find ignored files in repo
+frf-ni
+
+# Find hidden + ignored files globally
+fgf-hni
+
+# Preview hidden file with bat
+fcb-h
+
+# Grep ignored files in repo
+frg-ni
+```
+
+## Core Commands
+
+```bash
+# Search and run from shell history
+fh
+
+# Kill a process via fzf
+fkp
+
+# Checkout a git branch
+fbr
+
+# Browse all available commands
+fzf-help
+```
+
+## Real-World Workflows
+
+### Quick edit a config file
+
+```bash
+fgn          # opens fzf searching from $HOME
+             # type "config" to narrow results
+             # select file → opens in nvim
+```
+
+### Find and delete old log files
+
+```bash
+fcrmf        # opens fzf in cwd
+             # type ".log" to narrow results
+             # select file → confirms deletion
+```
+
+### Grep for a function and jump to it
+
+```bash
+frgn         # grep repo root
+             # type function name
+             # select match → opens in nvim at the line
+```
+
+### Switch git branches
+
+```bash
+fbr          # opens fzf with branch list
+             # type to filter
+             # select → checks out the branch
+```

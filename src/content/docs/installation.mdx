@@ -1,0 +1,105 @@
+---
+title: Installation
+description: Detailed installation, update, and uninstall instructions for my-fzf.
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+## Prerequisites
+
+Before installing my-fzf, ensure you have these tools:
+
+| Tool | Purpose | Required |
+|------|---------|----------|
+| <a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener noreferrer">fzf</a> | Fuzzy finder | Yes |
+| <a href="https://github.com/sharkdp/fd" target="_blank" rel="noopener noreferrer">fd</a> | File/directory search | Yes |
+| <a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener noreferrer">rg (ripgrep)</a> | Content search | Yes |
+| <a href="https://github.com/sharkdp/bat" target="_blank" rel="noopener noreferrer">bat</a> | File preview | Yes |
+| <a href="https://github.com/ajeetdsouza/zoxide" target="_blank" rel="noopener noreferrer">zoxide</a> | Smart cd | Yes |
+| <a href="https://neovim.io/" target="_blank" rel="noopener noreferrer">nvim</a> | Open files in editor | No |
+
+## Install (Script)
+
+<Steps>
+
+1. **Run the install script:**
+
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/mayknxyz/my-fzf/main/install.sh | bash
+   ```
+
+   This clones the repo to `~/my-fzf` and adds `source ~/my-fzf/my-fzf.sh` to your `.bashrc`.
+
+2. **Reload your shell:**
+
+   ```bash
+   source ~/.bashrc
+   ```
+
+3. **Verify the installation:**
+
+   ```bash
+   type fcf
+   ```
+
+   You should see `fcf is a function`.
+
+</Steps>
+
+## Install (Manual)
+
+<Steps>
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/mayknxyz/my-fzf.git ~/my-fzf
+   ```
+
+2. **Add the source line to your `.bashrc`:**
+
+   ```bash
+   echo 'source ~/my-fzf/my-fzf.sh' >> ~/.bashrc
+   ```
+
+3. **Reload your shell:**
+
+   ```bash
+   source ~/.bashrc
+   ```
+
+</Steps>
+
+## Update
+
+Pull the latest changes:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mayknxyz/my-fzf/main/update.sh | bash
+```
+
+Or manually:
+
+```bash
+cd ~/my-fzf && git pull --ff-only
+```
+
+Then reload your shell: `source ~/.bashrc`
+
+## Uninstall
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mayknxyz/my-fzf/main/uninstall.sh | bash
+```
+
+Or manually: remove the `source ~/my-fzf/my-fzf.sh` line from your `.bashrc` and delete `~/my-fzf`.
+
+<Aside type="caution">
+  Uninstalling removes all my-fzf commands from your shell. Reload your `.bashrc` after uninstalling.
+</Aside>
+
+## Troubleshooting
+
+- **`my-fzf: required dependency 'X' not found`** — Install the missing dependency. See [Dependencies](/dependencies/).
+- **Commands not found after install** — Make sure you reloaded your shell with `source ~/.bashrc`.
+- **`fcf` doesn't work but other commands do** — Check that `fd` and `fzf` are both installed and on your PATH.

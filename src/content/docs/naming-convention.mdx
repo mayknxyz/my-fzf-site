@@ -1,0 +1,100 @@
+---
+title: Naming Convention
+description: Learn the composable naming pattern behind all 334 my-fzf commands.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## The Pattern
+
+Every my-fzf command follows a consistent naming pattern:
+
+```
+f + scope + action + [type] + [variant/extension]
+```
+
+The `f` prefix stands for fzf. Everything after it describes what the command does.
+
+## Scopes
+
+The scope determines where the command searches.
+
+| Scope | Letter | Path |
+|-------|--------|------|
+| Current directory | `c` | `.` (cwd) |
+| Repository root | `r` | Git repo root, or `.` if not in a repo |
+| Global | `g` | `$HOME` |
+
+## Actions + Types
+
+The action determines what the command does with the results.
+
+| Letters | Action | Tool |
+|---------|--------|------|
+| `f` | Find file | fd + fzf |
+| `d` | Find directory | fd + fzf |
+| `n` | Open in nvim | fd + fzf + nvim |
+| `b` | Preview with bat | fd + fzf + bat |
+| `z` | cd with zoxide | zoxide + fzf |
+| `g` | Grep | rg + fzf |
+| `gb` | Grep + preview | rg + fzf + bat |
+| `gn` | Grep + open in nvim | rg + fzf + nvim |
+
+## Variant Suffixes
+
+Variants modify how `fd` and `rg` search.
+
+| Suffix | Meaning | fd/rg flags |
+|--------|---------|-------------|
+| `-h` | Include hidden files | `--hidden` |
+| `-ni` | No gitignore (show ignored files) | `--no-ignore` |
+| `-hni` | Both hidden and no-ignore | `--hidden --no-ignore` |
+
+## Extension Suffixes
+
+Extension suffixes filter results to specific file types.
+
+| Suffix | Extensions matched |
+|--------|-------------------|
+| `md` | `.md` |
+| `ts` | `.ts`, `.tsx`, `.mts`, `.cts` |
+| `js` | `.js`, `.jsx`, `.mjs`, `.cjs` |
+| `json` | `.json`, `.jsonc` |
+| `sh` | `.sh`, `.bash`, `.zsh` |
+| `css` | `.css`, `.scss`, `.sass`, `.less` |
+| `svelte` | `.svelte` |
+| `astro` | `.astro` |
+| `html` | `.html`, `.htm` |
+| `toml` | `.toml` |
+
+## File Operations
+
+File operation commands add an operation prefix before the type.
+
+| Letters | Operation |
+|---------|-----------|
+| `rmf` | Remove file |
+| `rmd` | Remove directory |
+| `mvf` | Move file(s) |
+| `mvd` | Move directory |
+| `cpf` | Copy file(s) |
+| `cpd` | Copy directory |
+| `rnf` | Rename file |
+| `rnd` | Rename directory |
+
+<Aside type="tip">
+  File operations also support extension suffixes. For example, `fcrmfmd` removes a markdown file in the current directory.
+</Aside>
+
+## Putting It Together
+
+Reading a command name left to right:
+
+| Command | Breakdown | Meaning |
+|---------|-----------|---------|
+| `fcf` | `f` + `c` + `f` | fzf + cwd + find file |
+| `frf` | `f` + `r` + `f` | fzf + repo + find file |
+| `fgn` | `f` + `g` + `n` | fzf + global + open in nvim |
+| `fcg-h` | `f` + `c` + `g` + `-h` | fzf + cwd + grep + hidden |
+| `frfts` | `f` + `r` + `f` + `ts` | fzf + repo + find file + TypeScript |
+| `fcrmfmd` | `f` + `c` + `rmf` + `md` | fzf + cwd + remove file + markdown |

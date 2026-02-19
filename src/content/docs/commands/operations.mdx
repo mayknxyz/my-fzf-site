@@ -1,0 +1,53 @@
+---
+title: File Operations
+description: 24 commands for removing, moving, copying, and renaming files and directories.
+---
+
+## Pattern
+
+```
+f + {scope} + {operation} + {type}
+```
+
+Where `{type}` is `f` (file) or `d` (directory).
+
+## Operations
+
+| Operation | Description |
+|-----------|-------------|
+| `rm` | Remove (delete) |
+| `mv` | Move to a different location |
+| `cp` | Copy to a different location |
+| `rn` | Rename in place |
+
+## Command Table
+
+| Operation | cwd (`c`) | repo (`r`) | global (`g`) |
+|-----------|-----------|------------|--------------|
+| Remove file | `fcrmf` | `frrmf` | `fgrmf` |
+| Remove directory | `fcrmd` | `frrmd` | `fgrmd` |
+| Move file | `fcmvf` | `frmvf` | `fgmvf` |
+| Move directory | `fcmvd` | `frmvd` | `fgmvd` |
+| Copy file | `fccpf` | `frcpf` | `fgcpf` |
+| Copy directory | `fccpd` | `frcpd` | `fgcpd` |
+| Rename file | `fcrnf` | `frrnf` | `fgrnf` |
+| Rename directory | `fcrnd` | `frrnd` | `fgrnd` |
+
+## Extension-Filtered Operations
+
+File operations also support extension suffixes for file types (not directories):
+
+```bash
+fcrmfmd     # remove markdown file in cwd
+frcpfjs     # copy JavaScript file in repo
+fgmvfts     # move TypeScript file globally
+fcrnfsh     # rename shell script in cwd
+```
+
+See [Extension-Filtered Commands](/commands/extensions/) for the full list of supported extensions.
+
+## Total Count
+
+3 scopes × 8 operations (4 operations × 2 types) = **24 file operation commands**
+
+Plus 3 scopes × 10 extensions × 4 file operations = **120 extension-filtered operation commands** (included in the extension total).

@@ -1,0 +1,59 @@
+---
+title: Modules
+description: The 6 library modules that generate my-fzf commands.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## Module Load Order
+
+Modules are sourced in strict order. Each module depends on helpers and prior modules.
+
+| Order | Module | Commands | Description |
+|-------|--------|----------|-------------|
+| 1 | `lib/core.sh` | 3 | Standalone commands: `fh`, `fkp`, `fbr` |
+| 2 | `lib/scoped.sh` | 24 | Scoped find/navigate/grep across 3 scopes × 8 actions |
+| 3 | `lib/variants.sh` | 72 | Hidden/no-ignore variants across 3 scopes × 3 variants × 8 actions |
+| 4 | `lib/ext.sh` | 210 | Extension-filtered commands across 3 scopes × 10 extensions × 7 actions |
+| 5 | `lib/ops.sh` | 24 | File operations across 3 scopes × 8 operations |
+| 6 | `lib/help.sh` | 1 | `fzf-help` / `f-help` command browser |
+
+<Aside type="caution">
+  Module load order matters. All modules depend on the helpers (`_fscope`, `_fext`) defined in `my-fzf.sh`. Changing the order may break command generation.
+</Aside>
+
+## lib/core.sh
+
+Defines 3 standalone commands that don't follow the scope pattern:
+
+- `fh` — History search and execute
+- `fkp` — Kill process
+- `fbr` — Git branch checkout
+
+## lib/scoped.sh
+
+Generates scoped commands using a `for` loop over scopes (`c`, `r`, `g`) and actions:
+
+- Find file/directory (`f`, `d`)
+- Open in nvim (`n`), preview with bat (`b`), cd with zoxide (`z`)
+- Grep (`g`), grep + bat (`gb`), grep + nvim (`gn`)
+
+## lib/variants.sh
+
+Extends scoped commands with hidden/no-ignore variants:
+
+- `-h` adds `--hidden` flag to fd/rg
+- `-ni` adds `--no-ignore` flag
+- `-hni` adds both flags
+
+## lib/ext.sh
+
+Generates extension-filtered commands by looping over the `_fext` associative array. Each extension gets find, nvim, bat, and operation commands.
+
+## lib/ops.sh
+
+Generates file operation commands (remove, move, copy, rename) for files and directories across all scopes.
+
+## lib/help.sh
+
+Defines the `fzf-help` (aliased as `f-help`) command that lists all loaded my-fzf functions using `declare -F` and lets you inspect their definitions.
