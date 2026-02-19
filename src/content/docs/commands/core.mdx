@@ -1,0 +1,42 @@
+---
+title: Core Commands
+description: The 3 standalone utility commands that don't follow the scope pattern.
+---
+
+## Core Commands
+
+These commands don't follow the `f + scope + action` pattern. They are standalone utilities.
+
+| Command | Description | Dependencies |
+|---------|-------------|--------------|
+| `fh` | Search and run from shell history | fzf |
+| `fkp` | Kill a process via fzf | fzf |
+| `fbr` | Checkout a git branch via fzf | fzf, git |
+
+## fh — History Search
+
+Searches your Bash history and runs the selected command.
+
+```bash
+fh
+# Type to filter history
+# Select a command → it runs immediately
+```
+
+## fkp — Kill Process
+
+Lists running processes and kills the selected one.
+
+```bash
+fkp
+# Select a process → sends kill signal
+```
+
+## fbr — Branch Checkout
+
+Lists git branches and checks out the selected one.
+
+```bash
+fbr
+# Select a branch → runs git checkout
+```

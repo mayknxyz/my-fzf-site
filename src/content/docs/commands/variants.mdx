@@ -1,0 +1,54 @@
+---
+title: Variant Commands
+description: 72 commands that modify search behavior with hidden and no-ignore flags.
+---
+
+## Pattern
+
+```
+f + {scope} + {action} + {variant}
+```
+
+Variants are appended as suffixes to any scoped command.
+
+## Variant Suffixes
+
+| Suffix | Meaning | fd/rg flags |
+|--------|---------|-------------|
+| `-h` | Include hidden files (dotfiles) | `--hidden` |
+| `-ni` | No gitignore (show ignored files) | `--no-ignore` |
+| `-hni` | Both hidden and no-ignore | `--hidden --no-ignore` |
+
+## Example Commands
+
+### Hidden variants (`-h`)
+
+| Command | Description |
+|---------|-------------|
+| `fcf-h` | Find file in cwd including hidden |
+| `frf-h` | Find file in repo including hidden |
+| `fgf-h` | Find file globally including hidden |
+| `fcg-h` | Grep in cwd including hidden |
+| `frg-h` | Grep in repo including hidden |
+| `fcb-h` | Preview in cwd including hidden |
+
+### No-ignore variants (`-ni`)
+
+| Command | Description |
+|---------|-------------|
+| `fcf-ni` | Find file in cwd including ignored |
+| `frf-ni` | Find file in repo including ignored |
+| `fcg-ni` | Grep in cwd including ignored |
+| `frg-ni` | Grep in repo including ignored |
+
+### Hidden + no-ignore variants (`-hni`)
+
+| Command | Description |
+|---------|-------------|
+| `fcf-hni` | Find file in cwd — hidden + ignored |
+| `frf-hni` | Find file in repo — hidden + ignored |
+| `fgg-hni` | Grep globally — hidden + ignored |
+
+## Total Count
+
+3 scopes × 3 variants × 8 actions = **72 variant commands**

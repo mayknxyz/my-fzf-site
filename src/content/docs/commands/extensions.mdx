@@ -1,0 +1,75 @@
+---
+title: Extension-Filtered Commands
+description: 210 commands that filter results by file type across 10 extensions.
+---
+
+## Pattern
+
+```
+f + {scope} + {action} + {extension}
+```
+
+Extension suffixes filter `fd` results to specific file types.
+
+## Supported Extensions
+
+| Suffix | Extensions matched |
+|--------|-------------------|
+| `md` | `.md` |
+| `ts` | `.ts`, `.tsx`, `.mts`, `.cts` |
+| `js` | `.js`, `.jsx`, `.mjs`, `.cjs` |
+| `json` | `.json`, `.jsonc` |
+| `sh` | `.sh`, `.bash`, `.zsh` |
+| `css` | `.css`, `.scss`, `.sass`, `.less` |
+| `svelte` | `.svelte` |
+| `astro` | `.astro` |
+| `html` | `.html`, `.htm` |
+| `toml` | `.toml` |
+
+## Available Actions per Extension
+
+Each extension supports 7 actions across all 3 scopes:
+
+| Action | Pattern | Description |
+|--------|---------|-------------|
+| Find | `f{s}f{ext}` | Find file by extension |
+| Open in nvim | `f{s}n{ext}` | Find and open in nvim |
+| Preview with bat | `f{s}b{ext}` | Find and preview with bat |
+| Remove | `f{s}rmf{ext}` | Remove file by extension |
+| Move | `f{s}mvf{ext}` | Move file by extension |
+| Copy | `f{s}cpf{ext}` | Copy file by extension |
+| Rename | `f{s}rnf{ext}` | Rename file by extension |
+
+## Examples
+
+### TypeScript files
+
+| Command | Description |
+|---------|-------------|
+| `fcfts` | Find TypeScript file in cwd |
+| `frfts` | Find TypeScript file in repo |
+| `frnts` | Open TypeScript file in nvim from repo |
+| `fcbts` | Preview TypeScript file with bat in cwd |
+| `fcrmfts` | Remove TypeScript file in cwd |
+
+### Markdown files
+
+| Command | Description |
+|---------|-------------|
+| `fcfmd` | Find markdown file in cwd |
+| `frfmd` | Find markdown file in repo |
+| `fgbmd` | Preview markdown file with bat globally |
+| `fcrmfmd` | Remove markdown file in cwd |
+| `frcpfmd` | Copy markdown file in repo |
+
+### Shell scripts
+
+| Command | Description |
+|---------|-------------|
+| `fcfsh` | Find shell script in cwd |
+| `frnsh` | Open shell script in nvim from repo |
+| `fcrmfsh` | Remove shell script in cwd |
+
+## Total Count
+
+3 scopes × 10 extensions × 7 actions = **210 extension-filtered commands**

@@ -1,0 +1,37 @@
+---
+title: Scoped Commands
+description: 24 commands for finding, navigating, grepping, and previewing across 3 scopes.
+---
+
+## Pattern
+
+```
+f + {scope} + {action}
+```
+
+Where `{scope}` is `c` (cwd), `r` (repo root), or `g` (global/home).
+
+## Command Table
+
+| Action | cwd (`c`) | repo (`r`) | global (`g`) | Description |
+|--------|-----------|------------|--------------|-------------|
+| Find file | `fcf` | `frf` | `fgf` | Select a file with fzf |
+| Find directory | `fcd` | `frd` | `fgd` | Select a directory with fzf |
+| Open in nvim | `fcn` | `frn` | `fgn` | Find and open in nvim |
+| Preview with bat | `fcb` | `frb` | `fgb` | Find and preview with bat |
+| cd with zoxide | `fcz` | `frz` | `fgz` | Smart cd with zoxide |
+| Grep | `fcg` | `frg` | `fgg` | Search content with rg + fzf |
+| Grep + bat | `fcgb` | `frgb` | `fggb` | Grep and preview match with bat |
+| Grep + nvim | `fcgn` | `frgn` | `fggn` | Grep and open match in nvim |
+
+## How Scopes Work
+
+- **`c` (cwd)** — Searches from the current working directory (`.`)
+- **`r` (repo)** — Searches from the git repository root. Falls back to `.` if not inside a git repo
+- **`g` (global)** — Searches from `$HOME`
+
+The scope is resolved at runtime by the `_fscope` helper:
+
+```bash
+_fscope() { case $1 in c) echo .;; r) _frroot;; g) echo "$HOME";; esac; }
+```

@@ -1,0 +1,38 @@
+---
+title: Dependencies
+description: Required and optional tools for my-fzf.
+---
+
+## Required Dependencies
+
+These tools must be installed for my-fzf to load. If any are missing, my-fzf aborts with an error message.
+
+| Tool | Purpose | Install |
+|------|---------|---------|
+| <a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener noreferrer">fzf</a> | Fuzzy finder — the core selection UI | `pacman -S fzf` / `brew install fzf` / `apt install fzf` |
+| <a href="https://github.com/sharkdp/fd" target="_blank" rel="noopener noreferrer">fd</a> | Fast file and directory search — replaces `find` | `pacman -S fd` / `brew install fd` / `apt install fd-find` |
+| <a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener noreferrer">rg (ripgrep)</a> | Fast content search — replaces `grep` | `pacman -S ripgrep` / `brew install ripgrep` / `apt install ripgrep` |
+| <a href="https://github.com/sharkdp/bat" target="_blank" rel="noopener noreferrer">bat</a> | File preview with syntax highlighting | `pacman -S bat` / `brew install bat` / `apt install bat` |
+| <a href="https://github.com/ajeetdsouza/zoxide" target="_blank" rel="noopener noreferrer">zoxide</a> | Smart cd that learns your habits | `pacman -S zoxide` / `brew install zoxide` / `apt install zoxide` |
+
+## Optional Dependencies
+
+These tools enhance my-fzf but are not required. Missing optional dependencies are warned about at load time, and related commands are skipped.
+
+| Tool | Purpose | Affected Commands |
+|------|---------|-------------------|
+| <a href="https://neovim.io/" target="_blank" rel="noopener noreferrer">nvim (Neovim)</a> | Open files in editor | `n` and `gn` commands (`fcn`, `frn`, `fgn`, `fcgn`, `frgn`, `fggn`, etc.) |
+
+## How Dependency Checking Works
+
+When you source `my-fzf.sh`, it checks for each required dependency using `command -v`. If any required tool is missing, my-fzf prints an error and aborts — no commands are defined.
+
+For optional dependencies, my-fzf prints a warning but continues loading. Commands that depend on the missing tool are simply not generated.
+
+```bash
+# What you'll see if fd is missing:
+my-fzf: required dependency 'fd' not found — aborting
+
+# What you'll see if nvim is missing:
+my-fzf: optional dependency 'nvim' not found — related commands skipped
+```

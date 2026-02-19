@@ -1,0 +1,61 @@
+---
+title: Getting Started
+description: Get up and running with my-fzf in under 2 minutes.
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+## Prerequisites
+
+- **Bash** — Interactive Bash shell
+- **fzf** — <a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener noreferrer">Fuzzy finder</a>
+- **fd** — <a href="https://github.com/sharkdp/fd" target="_blank" rel="noopener noreferrer">Fast file/directory search</a>
+- **rg** — <a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener noreferrer">Fast content search</a>
+- **bat** — <a href="https://github.com/sharkdp/bat" target="_blank" rel="noopener noreferrer">File preview</a>
+- **zoxide** — <a href="https://github.com/ajeetdsouza/zoxide" target="_blank" rel="noopener noreferrer">Smart cd</a>
+
+## Quick Install
+
+<Steps>
+
+1. **Run the install script:**
+
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/mayknxyz/my-fzf/main/install.sh | bash
+   ```
+
+2. **Reload your shell:**
+
+   ```bash
+   source ~/.bashrc
+   ```
+
+3. **Try your first command:**
+
+   ```bash
+   fcf    # find a file in current directory
+   ```
+
+</Steps>
+
+<Aside type="tip">
+  See the [Installation guide](/installation/) for manual install, update, and uninstall instructions.
+</Aside>
+
+## Quick Examples
+
+```bash
+fcf        # find file in cwd
+frf        # find file in repo root
+fgn        # open file from home in nvim
+fcg        # grep in cwd
+frfts      # find TypeScript files in repo
+fzf-help   # browse all commands
+```
+
+## What's Next?
+
+- [Installation](/installation/) — Manual install, update, and uninstall
+- [Dependencies](/dependencies/) — Required and optional tools
+- [Naming Convention](/naming-convention/) — Learn the command pattern
+- [Commands](/commands/) — Browse all 334 commands

@@ -1,0 +1,42 @@
+---
+title: Command Overview
+description: Overview of all 334 my-fzf commands organized by category.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## Command Count Breakdown
+
+my-fzf generates **334 commands** through composable naming:
+
+| Category | Formula | Count |
+|----------|---------|-------|
+| [Core](/commands/core/) | 3 standalone commands | **3** |
+| [Scoped](/commands/scoped/) | 3 scopes × 8 actions | **24** |
+| [Variants](/commands/variants/) | 3 scopes × 3 variants × 8 actions | **72** |
+| [Extensions](/commands/extensions/) | 3 scopes × 10 extensions × 7 actions | **210** |
+| [File Operations](/commands/operations/) | 3 scopes × 8 operations | **24** |
+| Help | `fzf-help` / `f-help` | **1** |
+| **Total** | | **334** |
+
+<Aside type="note">
+  The exact count depends on optional dependencies. If `nvim` is not installed, commands using `n` and `gn` actions are skipped, reducing the total.
+</Aside>
+
+## How Commands Are Generated
+
+Commands are not handwritten — they are generated at shell startup by nested `for` loops using `eval`. This means:
+
+- All commands follow the same naming convention
+- Adding a new scope or extension automatically creates all matching commands
+- The source code stays compact despite generating 334 functions
+
+## Finding Commands
+
+Use the built-in help browser to search and inspect any command:
+
+```bash
+fzf-help    # or f-help — browse all loaded commands
+```
+
+This opens fzf with every my-fzf function listed. Select one to see its definition.
